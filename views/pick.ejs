@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://getbootstrap.com/docs/4.0/examples/starter-template/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>Projection</title>
+
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="./stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="./stylesheets/bootstrap-grid.css" rel="stylesheet">
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./stylesheets/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="./stylesheets/starter-template.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/starter-template.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <%- nav %>
+    <div class="wrapper">
+        <%- GKs %>
+        <%- DEFs %>
+        <%- MIDs %>
+        <%- FORs %>
+        <div class="selectBackground">
+            <div class="teamDisplay"><center>
+                <div id="GKSelect" class="playerSelectDisplay"></div>
+                <div id="DEFSelect" class="playerSelectDisplay"></div>
+                <div id="MIDSelect" class="playerSelectDisplay"></div>
+                <div id="FORSelect" class="playerSelectDisplay"></div>
+            </center></div>
+        </div>
+        <!--<div class="sidePlayerInfoTable">Player Info Table</div>-->
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type='text/javascript' src="/jquery/jquery.js"></script>
+    <script>
+
+        var GKcnt = 0;
+        var DEFcnt = 0;
+        var MIDcnt = 0;
+        var FORcnt = 0;
+        var PLcnt = 0;
+        var replaceWait = false;
+
+      $(document).ready(function($){
+        //teams dropdown menu functionality
+        var teamsDD = $('#teamsBtn');
+
+        $(document).click(function (event){
+            if(replaceWait == true && !event.target.id.match(/GK[0-9]|DEF[0-9]|MID[0-9]|FOR[0-9]/)){
+                $('.replace-wait').each(function(){
+                    $(this).removeClass('replace-wait');
+                })
+                $('.insert-wait').removeClass('insert-wait');
+            }
+
+            /*if($('#teamsDisp').hasClass('ngate-content-show')){
+                $('#teamsDisp').removeClass('ngate-content-show')
+            }*/
+        })
+        
+        teamsDD.click(function(){
+          $('#teamsDisp').toggleClass('ngate-content-show');
+        });
+
+        var GKbtn = $('#GKBtn');
+        var DEFbtn = $('#DEFBtn');
+        var MIDbtn = $('#MIDBtn');
+        var FORbtn = $('#FORBtn');
+
+        $('#GKsDisp').addClass('sidenav-content-show');
+
+
+        GKbtn.click(function(){
+            if(!$('#GKsDisp').hasClass('sidenav-content-show')){
+                $('#GKsDisp').addClass('sidenav-content-show');
+                $('#GKBtn').addClass('sidenav-active');
+            }
+            
+            if($('#DEFsDisp').hasClass('sidenav-content-show')){
+                $('#DEFsDisp').removeClass('sidenav-content-show');
+                $('#DEFBtn').removeClass('sidenav-active');
+            }
+            if($('#MIDsDisp').hasClass('sidenav-content-show')){
+                $('#MIDsDisp').removeClass('sidenav-content-show');
+                $('#MIDBtn').removeClass('sidenav-active');
+            }
+            if($('#FORsDisp').hasClass('sidenav-content-show')){
+                $('#FORsDisp').removeClass('sidenav-content-show');
+                $('#FORBtn').removeClass('sidenav-active');
+            }
+        });
+        DEFbtn.click(function(){
+            if(!$('#DEFsDisp').hasClass('sidenav-content-show')){
+                $('#DEFsDisp').addClass('sidenav-content-show');
+                $('#DEFBtn').addClass('sidenav-active');
+            }
+            
+            if($('#GKsDisp').hasClass('sidenav-content-show')){
+                $('#GKsDisp').removeClass('sidenav-content-show');
+                $('#GKBtn').removeClass('sidenav-active');
+            }
+            if($('#MIDsDisp').hasClass('sidenav-content-show')){
+                $('#MIDsDisp').removeClass('sidenav-content-show');
+                $('#MIDBtn').removeClass('sidenav-active');
+            }
+            if($('#FORsDisp').hasClass('sidenav-content-show')){
+                $('#FORsDisp').removeClass('sidenav-content-show');
+                $('#FORBtn').removeClass('sidenav-active');
+            }
+        });
+        MIDbtn.click(function(){
+            if(!$('#MIDsDisp').hasClass('sidenav-content-show')){
+                $('#MIDsDisp').addClass('sidenav-content-show');
+                $('#MIDBtn').addClass('sidenav-active');
+            }
+            
+            if($('#DEFsDisp').hasClass('sidenav-content-show')){
+                $('#DEFsDisp').removeClass('sidenav-content-show');
+                $('#DEFBtn').removeClass('sidenav-active');
+            }
+            if($('#GKsDisp').hasClass('sidenav-content-show')){
+                $('#GKsDisp').removeClass('sidenav-content-show');
+                $('#GKBtn').removeClass('sidenav-active');
+            }
+            if($('#FORsDisp').hasClass('sidenav-content-show')){
+                $('#FORsDisp').removeClass('sidenav-content-show');
+                $('#FORBtn').removeClass('sidenav-active');
+            }
+        });
+        FORbtn.click(function(){
+
+            if(!$('#FORsDisp').hasClass('sidenav-content-show')){
+                $('#FORsDisp').addClass('sidenav-content-show');
+                $('#FORBtn').addClass('sidenav-active');
+            }
+            
+            if($('#DEFsDisp').hasClass('sidenav-content-show')){
+                $('#DEFsDisp').removeClass('sidenav-content-show');
+                $('#DEFBtn').removeClass('sidenav-active');
+            }
+            if($('#MIDsDisp').hasClass('sidenav-content-show')){
+                $('#MIDsDisp').removeClass('sidenav-content-show');
+                $('#MIDBtn').removeClass('sidenav-active');
+            }
+            if($('#GKsDisp').hasClass('sidenav-content-show')){
+                $('#GKsDisp').removeClass('sidenav-content-show');
+                $('#GKBtn').removeClass('sidenav-active');
+            }
+        });
+
+        //Controls adding a player to team selection
+        $('.select').click(function(event){
+            var id = event.target.id;
+            var posID = id[0] + id[1] + id[2];
+            if(posID.match(/GK/)){
+                if(GKcnt < 1){
+                    $('#' + event.target.id).appendTo('#GKSelect');
+                    GKcnt++;
+                    PLcnt++;
+                }else{
+                    var curID = $('#GKSelect').children('a').attr("id").slice(2);
+                    $('#GK' + curID).appendTo('#' + curID);
+                    $('#' + event.target.id).appendTo('#GKSelect');
+                }
+            }else if(posID.match(/DEF/)){
+                //if open spot in lineup for another defender, simply add the defender to the field
+                if(DEFcnt < 5 && PLcnt < 11){
+                    $('#' + event.target.id).appendTo('#DEFSelect');
+                    DEFcnt++;
+                    PLcnt++;
+                //else, then highlight players eligible for swapping with selected player for eligible roster
+                }else{
+                    if(!$(this).hasClass('replace-wait')){
+                        replaceWait = true;
+                        $('.insert-wait').removeClass('insert-wait');
+                        $('#' + event.target.id).addClass('insert-wait');
+                        $('#DEFSelect').children().addClass('replace-wait');
+                        if(DEFcnt != 5){
+                            $('#MIDSelect').children().addClass('replace-wait');
+                            $('#FORSelect').children().addClass('replace-wait');
+                        }
+                    }
+                }
+            }else if(posID.match(/MID/)){
+                //if open spot in lineup for another midfielder, simply add the midfielder to the field
+                if(MIDcnt < 4 && PLcnt < 11){
+                    $('#' + event.target.id).appendTo('#MIDSelect');
+                    MIDcnt++;
+                    PLcnt++;
+                //else, then highlight players eligible for swapping with selected player for eligible roster
+                }else{
+                    if(!$(this).hasClass('replace-wait')){
+                        replaceWait = true;
+                        $('.insert-wait').removeClass('insert-wait');
+                        $('#' + event.target.id).addClass('insert-wait');
+                        $('#MIDSelect').children().addClass('replace-wait');
+                        if(MIDcnt != 4){
+                            $('#DEFSelect').children().addClass('replace-wait');
+                            $('#FORSelect').children().addClass('replace-wait');
+                        }
+                    }
+                }
+            }else if(posID.match(/FOR/)){
+                //if open spot in lineup for another forward, simply add the forward to the field
+                if(FORcnt < 3 && PLcnt < 11){
+                    $('#' + event.target.id).appendTo('#FORSelect');
+                    FORcnt++;
+                    PLcnt++;
+                //else, then highlight players eligible for swapping with selected player for eligible roster
+                }else{
+                    if(!$(this).hasClass('replace-wait')){
+                        replaceWait = true;
+                        $('.insert-wait').removeClass('insert-wait');
+                        $('#' + event.target.id).addClass('insert-wait');
+                        $('#FORSelect').children().addClass('replace-wait');
+                        if(FORcnt != 3){
+                            $('#DEFSelect').children().addClass('replace-wait');
+                            $('#MIDSelect').children().addClass('replace-wait');
+                        }
+                    }
+                }
+            }
+        });
+
+        //Handles swapping players in and out durring selection when roster has requirement is full or meets
+        //specific lineup conditions
+        $(document).on('click', '.replace-wait', function (event){
+            var id = event.target.id.slice(3);
+            var remove = $('#' + event.target.id);
+            var insert = $('.insert-wait');
+            var section;
+            var insertPos;
+            var removePos;
+            if(insert.attr('id').match(/DEF/)){
+                section = $('#DEFSelect');
+                insertPos = 1;
+            }else if(insert.attr('id').match(/MID/)){
+                section = $('#MIDSelect');
+                insertPos = 2;
+            }else{
+                section = $('#FORSelect');
+                insertPos = 3;
+            }
+
+            if(remove.attr('id').match(/DEF/)){
+                removePos = 1;
+            }else if(remove.attr('id').match(/MID/)){
+                removePos = 2;
+            }else{
+                remove.Pos = 3;
+            }
+            remove.appendTo('#' + id);
+            insert.appendTo(section);
+            $('.replace-wait').removeClass('replace-wait');
+            insert.removeClass('insert-wait');
+            if(insertPos != removePos){
+                if(removePos == 1){
+                    DEFcnt--;
+                }else if(removePos == 2){
+                    MIDcnt--;
+                }else{
+                    FORcnt--;
+                }
+                if(insertPos == 1){
+                    DEFcnt++;
+                }else if(insertPos == 2){
+                    MIDcnt++;
+                }else{
+                    FORcnt++;
+                }
+            }
+            replaceWait = false;
+        });
+      });
+    </script>
+
+</body></html>

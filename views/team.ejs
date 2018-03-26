@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://getbootstrap.com/docs/4.0/examples/starter-template/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>Projection</title>
+
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="./stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="./stylesheets/bootstrap-grid.css" rel="stylesheet">
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./stylesheets/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="./stylesheets/starter-template.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/starter-template.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <%- nav %>
+    <div class="teams">
+        <div class="teamsGen">
+            <%- TeamImage %>
+            <%- TeamStats %>
+        </div>
+        <div class="teamTables">
+            <%- GKstats %>
+            <br>
+            <%- PLstats %>
+        </div>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type='text/javascript' src="/jquery/jquery.js"></script>
+    <script>
+
+      $(document).ready(function($){
+        //dropdown menu functionality
+        var teamsDD = $('#teamsBtn');
+        
+        teamsDD.click(function(){
+          $('#teamsDisp').toggleClass('ngate-content-show');
+        });
+
+        /*$(document).click(function(e){
+
+          if($('#teamsDisp').hasClass('ngate-content-show')){
+            $('#teamsDisp').toggleClass('ngate-content-show');
+          }
+        });*/
+      });
+    </script>
+
+</body></html>
